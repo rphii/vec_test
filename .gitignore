@@ -1,8 +1,8 @@
 *.exe
-./obj/*
+obj/*
 tags
 *.out
 *.stackdump
-./prof/prof.txt
+prof/prof.txt
 
 
