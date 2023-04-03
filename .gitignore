@@ -4,5 +4,6 @@ tags
 *.out
 *.stackdump
 prof/prof.txt
+*.swp
 
 
