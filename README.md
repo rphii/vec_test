@@ -1,4 +1,4 @@
-# test1
+# vec_test
 ## compile
 `make`
 
