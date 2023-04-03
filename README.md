@@ -20,7 +20,7 @@ Found in [`src/main.c`](src/main.c):
 
 ## am I surprised
 - a bit, but when thinking about it, it does make sense.
-- in fact, I'm actually relieved, considering the huge benefit of pointer persistence of `Vec2` over `Vec1` (_if I programmed it correctly_).of `Vec2` over `Vec1` (_if I programmed it correctly_).
+- in fact, I'm actually relieved, considering the huge benefit of pointer persistence of `Vec2` over `Vec1` (_if I programmed it correctly_).
 
 ## further thought
 - if the `sizeof(Foo)` were to increase, `Vec2` would likely be even faster than `Vec1`.
