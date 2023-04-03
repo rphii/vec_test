@@ -5,6 +5,9 @@
 ## prof test
 - first go to `cd prof`
 - prof test results `./a && gprof a gmon.out > prof.txt`
+- I dumped some of my result in [`prof`](./prof). the filename suggests, that:
+    - the first number (before the `x`) is `NUM_TESTS`
+    - the second number (after the `x`) is `NUM_APPEND`
 
 ## what is this
 Found in [`src/main.c`](src/main.c):
