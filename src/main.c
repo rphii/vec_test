@@ -27,6 +27,7 @@ typedef struct Vec2 {
 #define RAND_MAX_WIDTH IMAX_BITS(RAND_MAX)
 _Static_assert((RAND_MAX & (RAND_MAX + 1u)) == 0, "RAND_MAX not a Mersenne number");
 
+__attribute__((noinline, noclone))
 uint64_t rand64(void) {
   uint64_t r = 0;
   for (int i = 0; i < 64; i += RAND_MAX_WIDTH) {
@@ -37,6 +38,7 @@ uint64_t rand64(void) {
 }
 
 
+__attribute__((noinline, noclone))
 int foo_rand(Foo *foo)
 {
     if(!foo) return -1;
@@ -50,6 +52,7 @@ int foo_rand(Foo *foo)
 /* VEC1 ***************************************************/
 /**********************************************************/
 
+__attribute__((noinline, noclone))
 int vec1_append(Vec1 *vec, Foo *item)
 {
     if(!vec || !item) return -1;
@@ -68,6 +71,7 @@ int vec1_append(Vec1 *vec, Foo *item)
     return 0;
 }
 
+__attribute__((noinline, noclone))
 int vec1_get(Vec1 *vec, size_t index, Foo **item)
 {
     if(!vec || !item) return -1;
@@ -76,6 +80,7 @@ int vec1_get(Vec1 *vec, size_t index, Foo **item)
     return 0;
 }
 
+__attribute__((noinline, noclone))
 int vec1_free(Vec1 *vec)
 {
     if(!vec) return -1;
@@ -88,6 +93,7 @@ int vec1_free(Vec1 *vec)
 /* VEC2 ***************************************************/
 /**********************************************************/
 
+__attribute__((noinline, noclone))
 int vec2_append(Vec2 *vec, Foo *item)
 {
     if(!vec || !item) return -1;
@@ -108,6 +114,7 @@ int vec2_append(Vec2 *vec, Foo *item)
     return 0;
 }
 
+__attribute__((noinline, noclone))
 int vec2_get(Vec2 *vec, size_t index, Foo **item)
 {
     if(!vec || !item) return -1;
@@ -116,6 +123,7 @@ int vec2_get(Vec2 *vec, size_t index, Foo **item)
     return 0;
 }
 
+__attribute__((noinline, noclone))
 int vec2_free(Vec2 *vec)
 {
     if(!vec) return -1;
@@ -130,6 +138,7 @@ int vec2_free(Vec2 *vec)
 #define NUM_TESTS   10000 /* in ./prof/ this is the first number */
 #define NUM_APPEND  10000 /* in ./prof/ this is the second number */
 
+__attribute__((noinline, noclone))
 void vec1_test(size_t n)
 {
     Foo foo = {0};
@@ -146,6 +155,7 @@ void vec1_test(size_t n)
     vec1_free(&vec1);
 }
 
+__attribute__((noinline, noclone))
 void vec2_test(size_t n)
 {
     Foo foo = {0};
@@ -161,7 +171,6 @@ void vec2_test(size_t n)
     }
     vec2_free(&vec2);
 }
-
 
 int main(void)
 {

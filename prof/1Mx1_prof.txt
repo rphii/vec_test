@@ -2,12 +2,21 @@ Flat profile:
 
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total
- time   seconds   seconds    calls  Ts/call  Ts/call  name
- 35.71      0.05     0.05                             _mcount_private
- 35.71      0.10     0.05                             main
- 28.57      0.14     0.04                             __fentry__
-  0.00      0.14     0.00  1000000     0.00     0.00  vec1_append
-  0.00      0.14     0.00  1000000     0.00     0.00  vec2_append
+ time   seconds   seconds    calls  ns/call  ns/call  name
+ 74.53      0.79     0.79                             _mcount_private
+  8.49      0.88     0.09                             __fentry__
+  4.72      0.93     0.05 24000000     2.08     2.08  rand64
+  3.77      0.97     0.04  4000000    10.00    22.50  foo_rand
+  1.89      0.99     0.02  1000000    20.00    20.00  vec1_get
+  1.89      1.01     0.02  1000000    20.00    20.00  vec2_free
+  1.89      1.03     0.02                             printf
+  0.94      1.04     0.01  1000000    10.00    75.00  vec1_test
+  0.94      1.05     0.01  1000000    10.00    75.00  vec2_test
+  0.94      1.06     0.01                             rand
+  0.00      1.06     0.00  1000000     0.00     0.00  vec1_append
+  0.00      1.06     0.00  1000000     0.00     0.00  vec1_free
+  0.00      1.06     0.00  1000000     0.00     0.00  vec2_append
+  0.00      1.06     0.00  1000000     0.00     0.00  vec2_get
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -45,25 +54,65 @@ notice and this notice are preserved.
 		     Call graph (explanation follows)
 
 
-granularity: each sample hit covers 4 byte(s) for 7.14% of 0.14 seconds
+granularity: each sample hit covers 4 byte(s) for 0.94% of 1.06 seconds
 
 index % time    self  children    called     name
                                                  <spontaneous>
-[1]     35.7    0.05    0.00                 main [1]
-                0.00    0.00 1000000/1000000     vec1_append [4]
-                0.00    0.00 1000000/1000000     vec2_append [5]
+[1]     74.5    0.79    0.00                 _mcount_private [1]
 -----------------------------------------------
                                                  <spontaneous>
-[2]     35.7    0.05    0.00                 _mcount_private [2]
+[2]     14.2    0.00    0.15                 main [2]
+                0.01    0.07 1000000/1000000     vec1_test [5]
+                0.01    0.07 1000000/1000000     vec2_test [6]
+-----------------------------------------------
+                0.02    0.03 2000000/4000000     vec1_test [5]
+                0.02    0.03 2000000/4000000     vec2_test [6]
+[3]      8.5    0.04    0.05 4000000         foo_rand [3]
+                0.05    0.00 24000000/24000000     rand64 [7]
 -----------------------------------------------
                                                  <spontaneous>
-[3]     28.6    0.04    0.00                 __fentry__ [3]
+[4]      8.5    0.09    0.00                 __fentry__ [4]
 -----------------------------------------------
-                0.00    0.00 1000000/1000000     main [1]
-[4]      0.0    0.00    0.00 1000000         vec1_append [4]
+                0.01    0.07 1000000/1000000     main [2]
+[5]      7.1    0.01    0.07 1000000         vec1_test [5]
+                0.02    0.03 2000000/4000000     foo_rand [3]
+                0.02    0.00 1000000/1000000     vec1_get [8]
+                0.00    0.00 1000000/1000000     vec1_append [12]
+                0.00    0.00 1000000/1000000     vec1_free [13]
 -----------------------------------------------
-                0.00    0.00 1000000/1000000     main [1]
-[5]      0.0    0.00    0.00 1000000         vec2_append [5]
+                0.01    0.07 1000000/1000000     main [2]
+[6]      7.1    0.01    0.07 1000000         vec2_test [6]
+                0.02    0.03 2000000/4000000     foo_rand [3]
+                0.02    0.00 1000000/1000000     vec2_free [9]
+                0.00    0.00 1000000/1000000     vec2_append [14]
+                0.00    0.00 1000000/1000000     vec2_get [15]
+-----------------------------------------------
+                0.05    0.00 24000000/24000000     foo_rand [3]
+[7]      4.7    0.05    0.00 24000000         rand64 [7]
+-----------------------------------------------
+                0.02    0.00 1000000/1000000     vec1_test [5]
+[8]      1.9    0.02    0.00 1000000         vec1_get [8]
+-----------------------------------------------
+                0.02    0.00 1000000/1000000     vec2_test [6]
+[9]      1.9    0.02    0.00 1000000         vec2_free [9]
+-----------------------------------------------
+                                                 <spontaneous>
+[10]     1.9    0.02    0.00                 printf [10]
+-----------------------------------------------
+                                                 <spontaneous>
+[11]     0.9    0.01    0.00                 rand [11]
+-----------------------------------------------
+                0.00    0.00 1000000/1000000     vec1_test [5]
+[12]     0.0    0.00    0.00 1000000         vec1_append [12]
+-----------------------------------------------
+                0.00    0.00 1000000/1000000     vec1_test [5]
+[13]     0.0    0.00    0.00 1000000         vec1_free [13]
+-----------------------------------------------
+                0.00    0.00 1000000/1000000     vec2_test [6]
+[14]     0.0    0.00    0.00 1000000         vec2_append [14]
+-----------------------------------------------
+                0.00    0.00 1000000/1000000     vec2_test [6]
+[15]     0.0    0.00    0.00 1000000         vec2_get [15]
 -----------------------------------------------
 
  This table describes the call tree of the program, and was sorted by
@@ -156,5 +205,8 @@ notice and this notice are preserved.
 
 Index by function name
 
-   [3] __fentry__              [1] main                    [5] vec2_append
-   [2] _mcount_private         [4] vec1_append
+   [4] __fentry__              [7] rand64                 [14] vec2_append
+   [1] _mcount_private        [12] vec1_append             [9] vec2_free
+   [3] foo_rand               [13] vec1_free              [15] vec2_get
+  [10] printf                  [8] vec1_get                [6] vec2_test
+  [11] rand                    [5] vec1_test
